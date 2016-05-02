@@ -1,0 +1,103 @@
+{
+  "app/*.js": {
+    "type": "app"
+  },
+  "app/models/*.js": {
+    "type": "model",
+    "alternate": ["app/routes/%s.js", "app/routes/%{source|plural}.js", "app/routes/%{source|plural}/index.js"],
+    "related": ["app/controllers/%s.js", "app/controllers/%{source|plural}.js", "app/controllers/%{source|plural}/index.js"],
+    "test": "tests/unit/models/%s-test.js",
+    "template": "module.exports = App.%SModel = DS.Model.extend({\n\t\n});\n"
+  },
+  "app/routes/**.js": {
+    "type": "route",
+    "alternate": ["app/models/%i.js"],
+    "related": ["app/controllers/%s.js", "app/templates/%s.hbs"],
+    "test": "tests/unit/routes/%s-test.js",
+    "template": "module.exports = App.%SRoute = Ember.Route.extend({\n\t\n});\n"
+  },
+  "app/controllers/**.js": {
+    "type": "controller",
+    "alternate": ["app/routes/%s.js", "app/models/%{source}.js"],
+    "related": ["app/templates/%s.hbs", "app/views/%s.js"],
+    "test": "tests/unit/controllers/%s-test.js",
+    "template": "module.exports = App.%SController = Ember.%{source|cname}.extend({\n\t\n});\n"
+  },
+  "app/templates/**.hbs": {
+    "type": "template",
+    "alternate": ["app/routes/%s.js", "app/models/%{source}.js"],
+    "related": ["app/%s.js", "app/controllers/%s.js", "app/views/%s.js"],
+    "template": "Template for %s"
+  },
+  "app/views/**.js": {
+    "type": "view",
+    "alternate": ["app/routes/%s.js", "app/models/%{source}.js"],
+    "related": ["app/controllers/%s.js", "app/templates/%s.hbs"],
+    "test": "tests/unit/views/%s-test.js",
+    "template": "module.exports = App.%SView = Ember.View.extend({\n\t\n});\n"
+  },
+  "app/helpers/*.js": {
+    "type": "helper",
+    "test": "tests/unit/helpers/%s-test.js",
+    "template": "var %SHelper = function(value) {\n\t\n};\n\nEmber.Handlebars.helper('%s', %SHelper);\n"
+  },
+  "app/components/*.js": {
+    "type": "component",
+    "related": "app/templates/components/%s.hbs",
+    "test": "tests/integration/components/%s-test.js",
+    "template": "module.exports = App.%SComponent = Ember.Component.extend({\n\t\n});\n"
+  },
+  "app/mixins/*.coffee": {
+    "type": "mixin",
+    "template": "module.exports = App.%SMixin = Ember.Mixin.create({\n\t\n});"
+  },
+  "app/adapters/*.js": {
+    "type": "adapter",
+    "template": "module.exports = App.%SAdapter= DS.RESTAdapter.extend({\n\t\n});\n"
+  },
+  "app/initializers/*.js": {
+    "type": "initializer",
+    "template": "Ember.Application.initializer({\n\n\tname: '%s',\n\n\tinitialize: function(container, application){\n\n\tcontainer.register('store:main', application.Store)"
+  },
+  "app/services/*.js": {
+    "type": "service",
+    "test": "tests/unit/services/%s-test.js"
+  },
+  "app/styles/*.css": {
+    "type": "stylesheet"
+  },
+  "app/styles/*.scss": {
+    "type": "stylesheet"
+  },
+  "app/styles/*.sass": {
+    "type": "stylesheet"
+  },
+  "tests/unit/models/*-test.js": {
+    "type": "test",
+    "alternate": "app/models/%s.js"
+  },
+  "tests/unit/routes/*-test.js": {
+    "type": "test",
+    "alternate": "app/routes/%s.js"
+  },
+  "tests/unit/controllers/*-test.js": {
+    "type": "test",
+    "alternate": "app/controllers/%s.js"
+  },
+  "tests/unit/components/*-test.js": {
+    "type": "test",
+    "alternate": "app/components/%s.js"
+  },
+  "tests/unit/helpers/*-test.js": {
+    "type": "test",
+    "alternate": "app/helpers/%s.js"
+  },
+  "tests/unit/views/*-test.js": {
+    "type": "test",
+    "alternate": "app/views/%s.js"
+  },
+  "tests/unit/services/*-test.js": {
+    "type": "test",
+    "alternate": "app/services/%s.js"
+  }
+}
