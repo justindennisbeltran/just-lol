@@ -1,0 +1,7 @@
+{{#each regions as |region|}}
+  <option selected={{if (eq (get region optionValuePath) selection) "selected"}}>
+    {{get region optionLabelPath}}
+  </option>
+{{else}}
+  <option disabled>No options available</option>
+{{/each}}

@@ -1,5 +1,7 @@
-{{#each regions as |region|}}
-  {{region.name}}
-{{/each}}
+{{select/region-dropdown
+  selection=selectedRegion
+  changeAction=(action (mut selectedRegion))}}
+
+selection: {{selectedRegion}}
 
 {{outlet}}
