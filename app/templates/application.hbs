@@ -1,7 +1,10 @@
 {{select/region-dropdown
-  selection=selectedRegion
-  changeAction=(action (mut selectedRegion))}}
+  regions=regions
+  selection=selectedRegionCode
+  changeAction=(action (mut selectedRegionCode))}}
 
-selection: {{selectedRegion}}
+<br />
+
+region host: {{selectedRegion.host}}
 
 {{outlet}}
