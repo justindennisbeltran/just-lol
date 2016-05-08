@@ -3,8 +3,38 @@
   selection=selectedRegionCode
   changeAction=(action (mut selectedRegionCode))}}
 
+{{input type="text" value=summonerName}}
+
+<button {{action "getSummoner"}}>Go!</button>
+
+<br />
 <br />
 
-region host: {{selectedRegion.host}}
+{{#if summoner}}
+  <table>
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{summoner.id}}</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>{{summoner.name}}</td>
+      </tr>
+      <tr>
+        <th>Profile Icon ID</th>
+        <td>{{summoner.profileIconId}}</td>
+      </tr>
+      <tr>
+        <th>Summoner Level</th>
+        <td>{{summoner.summonerLevel}}</td>
+      </tr>
+      <tr>
+        <th>Revision Date</th>
+        <td>{{summoner.revisionDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+{{/if}}
 
 {{outlet}}
