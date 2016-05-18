@@ -5,25 +5,20 @@ export default Ember.Controller.extend({
   apiKey: Ember.computed(() => config.apiKey),
 
   region: Ember.inject.service(),
-  regions: Ember.computed.alias('region.endpoints'),
+  regions: Ember.computed.alias('region.regions'),
+  currentRegion: Ember.computed.alias('region.current'),
 
   summonerName: 'Just',
-  selectedRegionCode: 'OCE',
-
-  selectedRegion: Ember.computed('selectedRegionCode', {
-    get(key) {
-      return this.get('regions').findBy('code', this.get('selectedRegionCode'));
-    },
-    set(key, value) {
-      this.set('selectedRegionCode', Ember.get(value, 'code'));
-      return value;
-    }
-  }),
 
   actions: {
+    changeRegion(name) {
+      let region = this.get('regions').findBy('name', name);
+      this.set('currentRegion', region);
+    },
+
     getSummoner() {
-      const host = this.get('selectedRegion.host');
-      const code = this.get('selectedRegionCode').toLowerCase();
+      const host = this.get('currentRegion.host');
+      const code = this.get('currentRegion.code');
       const summonerName = this.get('summonerName');
 
       let requestUrl = `https://${host}/api/lol/${code}/v1.4/summoner/by-name/${summonerName}?api_key=${config.apiKey}`;

@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-  endpoints: [
+  current: Ember.computed('regions', function() {
+    // Set default region
+    return this.get('regions').findBy('name', 'Oceania');
+  }),
+
+  regions: [
     { name: 'Brazil',
       code: 'BR',
       platformId: 'BR1',
